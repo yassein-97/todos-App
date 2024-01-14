@@ -2,6 +2,7 @@ let apiKey = "659f23202681618c591bcecc";
 const inputTask = document.querySelector('#inputTask');
 const addBtn = document.querySelector('#addBtn');
 const show = document.querySelector('#show');
+const spinner = document.querySelector('.spinner-border');
 
 
 async function addTask(){
@@ -34,9 +35,18 @@ addBtn.addEventListener('click',function(){
 
 async function getData(){
     let request = await fetch(`https://todos.routemisr.com/api/v1/todos/${apiKey}`);
-
     let result = await request.json();
 
+    // if(request.status != 200){
+    //     spinner.classList.remove('d-none');
+    // }
+    // else{
+    //     spinner.classList.add('d-none')
+    // }
+    // console.log(request.);
+    // request.addEventListener('readystatechange',function(){
+    //     console.log(request.status);
+    // });
     showData(result.todos);
     // return result.todos;
     console.log(result.todos);
