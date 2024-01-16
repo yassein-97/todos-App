@@ -34,22 +34,17 @@ addBtn.addEventListener('click',function(){
 });
 
 async function getData(){
+    spinner.classList.remove('d-none');
+    show.classList.add('d-none');
+
     let request = await fetch(`https://todos.routemisr.com/api/v1/todos/${apiKey}`);
     let result = await request.json();
 
-    // if(request.status != 200){
-    //     spinner.classList.remove('d-none');
-    // }
-    // else{
-    //     spinner.classList.add('d-none')
-    // }
-    // console.log(request.);
-    // request.addEventListener('readystatechange',function(){
-    //     console.log(request.status);
-    // });
-    showData(result.todos);
-    // return result.todos;
-    console.log(result.todos);
+    if(request.status == 200){
+        spinner.classList.add('d-none');
+        show.classList.remove('d-none');
+        showData(result.todos);
+    }
 };
 
 async function showData(arr){
